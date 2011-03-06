@@ -26,6 +26,25 @@ div#primary-nav {
         z-index: 10;
 }
 
+div#primary-nav ul
+{
+	margin-top: 40px;
+	margin-left: 100px;
+	width: 400px;
+}
+
+div#primary-nav ul li {
+	display: inline;
+	padding-left: 10px;
+}
+
+div#primary-nav ul li a,
+div#primary-nav ul li a:hover,
+div#primary-nav ul li a:visited,
+div#primary-nav ul li a:active {
+	color: black;
+}
+
 div#secondary-nav {
         background: #9ACDCD url('/images/header-right.gif') no-repeat right top;
         height: 100px;
@@ -44,4 +63,11 @@ div#content {
 	border:1px solid #016734;
 	background-color: white;
 
+}
+
+div#content a,
+div#content a:hover,
+div#content a:visited,
+div#content a:active {
+        color: #cc0000;
 }

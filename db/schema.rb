@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110306194113) do
+ActiveRecord::Schema.define(:version => 20110306202032) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20110306194113) do
     t.integer  "partner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_rsvpd"
   end
 
   create_table "menu_contributions", :force => true do |t|

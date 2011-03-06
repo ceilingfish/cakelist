@@ -18,6 +18,15 @@ WeddingMenu::Application.routes.draw do
       end
   end
 
+  resources :guests do
+     member do
+	post 'rsvp'
+     end
+     collection do
+	get 'find'
+     end
+  end
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
