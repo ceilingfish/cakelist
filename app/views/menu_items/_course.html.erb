@@ -1,0 +1,5 @@
+<h1><%= course.name %></h1>
+
+<ul>
+	<%= render :collection => course.menu_items, :partial => 'menu_items/menu_item' %>
+</ul>

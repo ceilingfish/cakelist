@@ -11,7 +11,12 @@ WeddingMenu::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :menu_items do
+      member do
+	post 'bring'
+	post 'buy'
+      end
+  end
 
   # Sample resource route with options:
   #   resources :products do
@@ -48,7 +53,9 @@ WeddingMenu::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "menu_items#index"
+  root :to => "static#home"
+  match "location", :to => "static#location", :as => :location
+
 
   # See how all your routes lay out with "rake routes"
 

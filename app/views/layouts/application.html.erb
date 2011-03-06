@@ -7,10 +7,17 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="primary-nav">
-This is nav
+<div id="header">
+	<div id="primary-nav">
+		<%= render 'shared/nav' %>
+	</div>
+
+	<div id="secondary-nav">
+	</div>
 </div>
-<%= yield %>
+<div id="content">
+	<%= yield %>
+</div>
 
 </body>
 </html>

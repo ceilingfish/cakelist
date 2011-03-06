@@ -1,1 +1,9 @@
-beef
+<h1>The Picnic</h1>
+
+<p>So there's going to be a really big picnic, if you bring the food for it!</p>
+
+<p>Signup below if you want to make / bring something (there are suggestions for those who aren't sure)</p>
+
+<% @courses.each do | course | %>
+	<%= render :partial => 'menu_items/course', :locals => { :course => course } %>
+<% end %>

@@ -1,0 +1,4 @@
+﻿<li><%= menu_item.name %>
+	&nbsp;<%= link_to "I can bring this!", bring_menu_item_url(menu_item), :method => :post %>
+	&nbsp;<%= link_to "I will pay #{number_to_currency(menu_item.price, :unit => '£')}  for this!", buy_menu_item_url(menu_item), :method => :post %>
+</li>

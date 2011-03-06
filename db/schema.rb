@@ -10,12 +10,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110223232550) do
+ActiveRecord::Schema.define(:version => 20110306194113) do
+
+  create_table "courses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "guests", :force => true do |t|
+    t.string   "name"
+    t.integer  "partner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menu_contributions", :force => true do |t|
+    t.integer  "menu_item_id"
+    t.integer  "guest_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "menu_items", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "course_id"
+    t.float    "price"
   end
 
 end
