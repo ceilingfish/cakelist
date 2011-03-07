@@ -19,11 +19,9 @@ WeddingMenu::Application.routes.draw do
   end
 
   resources :guests do
-     member do
-	post 'rsvp'
-     end
      collection do
 	get 'find'
+	post 'rsvp'
      end
   end
 
