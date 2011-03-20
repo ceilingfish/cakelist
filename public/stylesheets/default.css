@@ -71,3 +71,9 @@ div#content a:visited,
 div#content a:active {
         color: #cc0000;
 }
+
+.guestlist .error {
+	height: 14pt;
+	font-weight: bold;
+	color: #B31212;
+}

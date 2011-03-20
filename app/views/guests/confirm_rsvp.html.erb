@@ -1,0 +1,8 @@
+<h1>Awesome, glad you can come!</h1>
+
+<% if @partner %>
+	<% form_for :guest, :url => rsvp_guests_url, :html => {:class => 'partnerRsvp'} do | f | %>
+		<%= f.hidden_field :id, :value => @partner.id %>
+		Is <%= @partner.name %> coming too?&nbsp;<%= f.submit("Sure is") %>
+	<% end %>
+<% end %>
