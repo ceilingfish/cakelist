@@ -1,8 +1,23 @@
 <h1>Awesome, glad you can come!</h1>
 
-<% if @partner %>
-	<% form_for :guest, :url => rsvp_guests_url, :html => {:class => 'partnerRsvp'} do | f | %>
+<p>
+	You might want to have a <%= link_to "check on the directions", directions_url %>.
+	Or if you are feeling creative (or generous) sign up to <%= link_to "bring something yummy to the picnic", menu_items_url %>.
+</p>
+
+<p>We've also got plenty of places to sleep, if you want to stay. <%= link_to "Go here to reserve a bed", accomodation_url %>.</p>
+
+<% if @partner && !@partner.is_rsvpd %>
+	<% form_for :guest, :url => rsvp_guests_url, :html => {:class => 'partnerRsvp partner'} do | f | %>
 		<%= f.hidden_field :id, :value => @partner.id %>
 		Is <%= @partner.name %> coming too?&nbsp;<%= f.submit("Sure is") %>
+	<% end %>
+<% elsif @partner.nil? %>
+	<% form_for :guest, :url => guests_url, :html => { :class => 'partnerCreate partner' } do | f | %>
+		<p class="error"></p>
+		<%= f.hidden_field :partner_id, :value => @guest.id %>
+		<%= f.hidden_field :is_rsvpd, :value => true %>
+		<p>If you'd like to bring someone pop their name in here, and we shall reserve a space for them.<p>
+		<p><%= f.text_field :name, :value => "" %>&nbsp;<%= f.submit "is coming too" %></p>
 	<% end %>
 <% end %>

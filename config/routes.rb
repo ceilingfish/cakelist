@@ -25,6 +25,8 @@ WeddingMenu::Application.routes.draw do
 		post 'rsvp'
      end
   end
+  
+  resource :accomodation
 
   # Sample resource route with options:
   #   resources :products do
@@ -62,7 +64,7 @@ WeddingMenu::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "static#home"
-  match "location", :to => "static#location", :as => :location
+  match "directions", :to => "static#directions", :as => :directions
 
 
   # See how all your routes lay out with "rake routes"

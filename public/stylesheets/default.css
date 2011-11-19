@@ -56,13 +56,22 @@ div#secondary-nav {
 }
 
 div#content {
-	padding: 75px 15px 15px 15px;
-	width: 1000px;
-	margin: 0 auto;
-	text-align: left;
-	border:1px solid #016734;
-	background-color: white;
+	background: white url('/images/content-border.gif') repeat-y right top;
+	padding: 50px;
+}
 
+div#container {
+	background: white url('/images/content-border-top.gif') no-repeat right top;
+	width: 1000px;
+	margin: 100px auto 0 auto;
+	padding-top: 30px;
+	text-align: left;
+}
+
+div#container .top {
+border: 10px solid blue;
+	background: white url('/images/content-border-top.gif') no-repeat left top;
+	width: 100%;
 }
 
 div#content a,
@@ -72,8 +81,13 @@ div#content a:active {
         color: #cc0000;
 }
 
-.guestlist .error {
+.error {
 	height: 14pt;
 	font-weight: bold;
+	font-size: 14pt;
 	color: #B31212;
+}
+
+.partner {
+	border: 1px solid #ccc;
 }

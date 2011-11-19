@@ -31,11 +31,23 @@ $(document).ready(function()
 		
 		return false;
 	});
+	
+	$('.partnerCreate').live('submit', function(event) {
+		
+		$.ajax($(this).attr('action'), {
+			context		: 	$(this),
+			success 	: 	confirmPartnerRSVP,
+			data 		: 	$(this).serialize(),
+			type		: 	"POST"
+		});
+		
+		return false;
+	});
 });
 
 function confirmPartnerRSVP(data) {
 	
-	$('input[type=submit]',$(this)).replaceWith("<p>Great! we'll see you both on the 16th of June!");
+	$(this).replaceWith('<p class="partner">Great! we\'ll see you both on the 16th of June!</p>');
 }
 
 function confirmRSVP(data) {
@@ -45,7 +57,10 @@ function confirmRSVP(data) {
 		data		: data,
 		dataType	: "html",
 		success		: function(data) {
-						$.fancybox(data);
+						$.fancybox({
+							content: data,
+							autoDimensions: false
+						});
 					  }
 	});
 }

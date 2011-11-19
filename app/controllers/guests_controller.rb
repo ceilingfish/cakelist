@@ -1,4 +1,16 @@
 class GuestsController < ApplicationController
+	
+	def create
+		@guest = Guest.new(params[:guest])
+		
+		if @guest.save
+			Guest.find(@guest.partner_id).update_attributes(:partner_id => @guest.id) if @guest.partner_id
+			render :status => 200, :nothing => true
+		else
+			render :status => 400, :text => @guest.errors.full_messages.to_sentence
+		end
+	end
+	
 	def rsvp
 		
 		if params[:guest][:id]
