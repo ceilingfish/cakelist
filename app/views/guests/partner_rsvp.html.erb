@@ -1,0 +1,23 @@
+<div class="partnerRsvp">
+	<strong>Awesome, glad you can come!</stong>
+	
+	<% if @partner && @partner.is_rsvpd %>
+		<p>Looks like <%= @partner.name %> has already RSVP'd. We look forward to seeing the both of you soon!</p>
+		
+		<%= render :partial => "menu_rsvp", :locals => {:guest => @guest} %>
+	<% elsif @partner %>
+		<% form_for :guest, :url => rsvp_guests_url, :html => {:class => 'partnerRsvp'}, :method => :post do | f | %>
+			<%= f.hidden_field :id, :value => @partner.id %>
+			<%= f.hidden_field :is_rsvpd, :value => true %>
+			Is <%= @partner.name %> coming too?&nbsp;<%= f.submit("Sure is") %>&nbsp;<button class="partnerSkip">No, can't make it!</button>
+		<% end %>
+	<% elsif @partner.nil? %>
+		<% form_for :guest, :url => guests_url, :html => { :class => 'partnerCreate partnerRsvp' } do | f | %>
+			<p class="error"></p>
+			<%= f.hidden_field :partner_id, :value => @guest.id %>
+			<%= f.hidden_field :is_rsvpd, :value => true %>
+			<p>Do you have a significant other you'd like to bring?&nbsp;<button class="partnerSkip">Nope!</button><p>
+			<p class="userVoice">I'm going to bring <%= f.text_field :name, :value => "" %>&nbsp;<%= f.submit "along too" %></p>
+		<% end %>
+	<% end %>
+</div>

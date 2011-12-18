@@ -5,7 +5,7 @@ class GuestsController < ApplicationController
 		
 		if @guest.save
 			Guest.find(@guest.partner_id).update_attributes(:partner_id => @guest.id) if @guest.partner_id
-			render :status => 200, :nothing => true
+			render :json => @guest
 		else
 			render :status => 400, :text => @guest.errors.full_messages.to_sentence
 		end
@@ -21,15 +21,24 @@ class GuestsController < ApplicationController
 		
 		if @guest
 			@guest.update_attributes(:is_rsvpd => true)
-			render :json => @guest, :include => :partner, :status => 200
+			
+			cookies[:guest_id] = @guest.id unless current_guest
+			
+			render :json => @guest
 		else
 			render :nothing => true, :status => 404
 		end
 	end
 	
-	def confirm_rsvp
-		@guest = Guest.find params[:guest][:id]
+	def partner_rsvp
+		@guest = Guest.find params[:id]
 		@partner = @guest.partner
+		
+		render :layout => false
+	end
+	
+	def menu_rsvp
+		@guest = current_guest
 		
 		render :layout => false
 	end

@@ -2,7 +2,9 @@
 
 <p>And if you're reading this then in all likelihood you've been invited.</p>
 
-<%= form_for :guest, :url => rsvp_guests_url, :html => {:class => 'rsvp guestlist'} do | f | %>
+<p>If you can make it, pop your name in below!</p>
+
+<%= form_for :guest, :url => rsvp_guests_url, :html => {:class => 'rsvp guestlist', :id => "rsvp"} do | f | %>
 	<p class="error"></p>
-	<p><%= f.text_field :name, :class => ['name'] %>&nbsp;<%= f.submit "RSVP it" %></p>
+	<p><%= f.text_field :name, :class => ['name'] %>&nbsp;<%= f.submit "I'm coming!",  { :id => "rsvpConfirm" } %></p>
 <% end %>

@@ -1,0 +1,2 @@
+module MenuContributionsHelper
+end

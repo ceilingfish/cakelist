@@ -1,0 +1,12 @@
+<p>Now the very important part: food! It would be absolutely awesome if you could bring some food along</p>
+
+<p>There's a <%= link_to "list of lovely food ideas", menu_items_url %> if you're in need of some inspiration</p>
+
+<% form_for :menu_contribution, :url => menu_contributions_url, :html => {:class => 'menuRsvp'} do | f | %>
+	<%= f.hidden_field :guest_id, :value => guest.id %>
+	<%= f.hidden_field :type, :value => "made"%>
+	<p>Or if you've got an idea already, tell us!</p>
+	
+	<p class="userVoice">I'm going to bring <%= text_field :menu_item, :name, :class => "name" %> along, <%= f.submit "Because I'm fabulous" %>.</p>
+	
+<% end %>

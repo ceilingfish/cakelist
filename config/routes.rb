@@ -12,21 +12,27 @@ WeddingMenu::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :menu_items do
-      member do
-	post 'bring'
-	post 'buy'
-      end
+      	member do
+			post 'bring'
+			post 'buy'
+      	end
+      	collection do
+      		get 'find'
+  		end
   end
 
   resources :guests do
+	 member do
+		get 'partner_rsvp'
+	 end
      collection do
 		get 'find'
-		get 'confirm_rsvp'
 		post 'rsvp'
+		get 'menu_rsvp'
      end
   end
-  
-  resource :accomodation
+
+  resources :menu_contributions
 
   # Sample resource route with options:
   #   resources :products do

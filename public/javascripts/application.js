@@ -10,11 +10,12 @@ $(document).ready(function()
 
 		$.ajax("/guests/rsvp", {
 			context		: 	$(this),
-			success 	: 	confirmRSVP,
 			error		: 	function() {
 								$('.error',$(this)).text("Sorry I can't find you on the guest list");
 							},
+			success     : 	showPartnerRsvp,
 			data 		: 	$(this).serialize(),
+			dataType    : 	"json", 
 			type		: 	"POST"
 		});
 		
@@ -22,44 +23,52 @@ $(document).ready(function()
 	});
 	
 	$('.partnerRsvp').live('submit', function(event) {
-		$.ajax("/guests/rsvp", {
+		$.ajax($(this).attr('action'), {
 			context		: 	$(this),
-			success 	: 	confirmPartnerRSVP,
 			data 		: 	$(this).serialize(),
+			success		: 	showMenuRsvp,
+			dataType	: 	"json",
 			type		: 	"POST"
 		});
 		
 		return false;
 	});
 	
-	$('.partnerCreate').live('submit', function(event) {
-		
-		$.ajax($(this).attr('action'), {
-			context		: 	$(this),
-			success 	: 	confirmPartnerRSVP,
-			data 		: 	$(this).serialize(),
-			type		: 	"POST"
-		});
-		
+	$('.partnerSkip').live('click', function(ev) { 
+		showMenuRsvp()
 		return false;
 	});
 });
 
-function confirmPartnerRSVP(data) {
-	
-	$(this).replaceWith('<p class="partner">Great! we\'ll see you both on the 16th of June!</p>');
-}
-
-function confirmRSVP(data) {
+function showPartnerRsvp(data)
+{
 	$('.error',$(this)).text("");
+
+	$('.rsvp input').attr('disabled', 'disabled');
+		
 	$.ajax({
-		url			: "/guests/confirm_rsvp",
-		data		: data,
+		url			: "/guests/"+data.guest.id+"/partner_rsvp",
 		dataType	: "html",
 		success		: function(data) {
-						$.fancybox({
-							content: data,
-							autoDimensions: false
+						$('#content').append(data)
+					  }
+	});
+}
+
+function showMenuRsvp(data)
+{
+	
+	$('.partnerRsvp input').attr('disabled', 'disabled');
+	$('.partnerRsvp button').attr('disabled', 'disabled');
+	
+	$.ajax({
+		url			: "/guests/menu_rsvp",
+		dataType	: "html",
+		success		: function(data) {
+						$('#content').append(data);
+						
+						$('.menuRsvp input.name').autocomplete({
+							source: "/menu_items/find"
 						});
 					  }
 	});
